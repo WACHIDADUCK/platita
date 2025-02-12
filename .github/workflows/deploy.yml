@@ -1,0 +1,19 @@
+name: Deploy
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: 161.22.42.207
+          port: 2222
+          username: wachi
+          key: ${{ secrets.PLATITA }}
+          script: "cd /var/www/html/platita; git pull origin main; npm run build; sudo service php8.3-fpm reload"
