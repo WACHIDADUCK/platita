@@ -13,7 +13,7 @@ jobs:
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: 161.22.42.207
-          port: 2222
+          port: 22
           username: wachi
           key: ${{ secrets.PLATITA }}
           script: "cd /var/www/html/platita; git pull origin main; sudo service php8.3-fpm reload"
