@@ -17,3 +17,4 @@ jobs:
           username: wachi
           key: ${{ secrets.PLATITA }}
           script: "cd /var/www/html/platita; git pull origin main; sudo service php8.3-fpm reload"
+          debug: true
