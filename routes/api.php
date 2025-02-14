@@ -12,25 +12,22 @@ use App\Http\Controllers\Api\ComentarioController;
 // })->middleware('auth:sanctum');
 
 
-Route::
-// middleware('auth:sanctum')->
-get('/usuario', [UsuarioController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/usuario', [UsuarioController::class, 'index']);
 
 
 
 Route::
-// middleware('auth:sanctum')->
-get('/asociacion', [AsociacionController::class, 'index']);
+    // middleware('auth:sanctum')->
+    get('/asociacion', [AsociacionController::class, 'index']);
 
 
 
 Route::
-// middleware('auth:sanctum')->
-get('/comentario', [ComentarioController::class, 'index']);
+    // middleware('auth:sanctum')->
+    get('/comentario', [ComentarioController::class, 'index']);
 
 
 
 Route::
-// middleware('auth:sanctum')->
-get('/evento_controler', [EventoController::class, 'index']);
-
+    // middleware('auth:sanctum')->
+    get('/evento_controler', [EventoController::class, 'index']);
