@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Asociacion extends Model
 {
     use HasFactory;
-
+//  COmentar
     /**
      * The attributes that are mass assignable.
      *
