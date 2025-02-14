@@ -1,0 +1,76 @@
+models:
+  Usuario:
+    nombre: string
+    email: string unique
+    password: string
+    admin: boolean
+    relationships:
+      hasMany: Asociacion:gestiona_asociaciones, Comentario:tiene_comentarios
+      belongsToMany: Asociacion, Evento
+
+  Asociacion:
+    nombre: string
+    descripcion: string
+    contacto: string
+    email: string
+    imagen: string
+    relationships:
+      belongsTo: Usuario:asiste_evento
+      belongsToMany: Usuario, Evento
+
+  Evento:
+    nombre: string
+    descripcion: string
+    tipo: enum:evento,actividad
+    fecha_inicio: datetime
+    fecha_fin: datetime
+    accesibilidad: enum:socios,publico,privado,mixto
+    estado: enum:abierto,cerrado
+    aforo: integer
+    aforo_socios: integer
+    aforo_no_socios: integer
+    voluntarios: integer
+    imagen: string
+    relationships:
+      belongsToMany: Usuario
+      hasMany: Comentario
+
+  Comentario:
+    evento_id: foreign:evento
+    usuario_id: foreign:usuario
+    comentario: string
+    fecha: datetime
+    valoracion: integer
+    relationships:
+      belongsTo: Evento, Usuario
+
+
+
+
+
+      #Tablas N:M Relaciones:
+
+  # SE SUPONE QUE SE CREAN LAS RELACIONES N:M ???
+
+  # Usuario_Pertenece_Asociacion:
+  #   usuario_id: id foreign:usuarios
+  #   asociacion_id: id foreign:asociaciones
+
+  # Usuario_Asiste_Evento:
+  #   usuario_id: id foreign:usuarios
+  #   evento_id: id foreign:eventos
+
+  # Asociacion_Gestiona_Evento:
+  #   asociacion_id: id foreign:asociaciones
+  #   evento_id: id foreign:eventos
+
+
+
+
+
+
+controllers:
+  # ...
+
+
+seeders: Usuario, Asociacion, Evento, Comentario

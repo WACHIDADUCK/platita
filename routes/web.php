@@ -1,9 +1,16 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
+=======
+
+
+>>>>>>> guille
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+
+    // dd(opcache_get_status());
     return view('welcome');
 });
 
