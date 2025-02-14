@@ -16,5 +16,5 @@ jobs:
           port: 22
           username: wachi
           key: ${{ secrets.PLATITA }}
-          script: "sudo /./var/www/html/platita/.github/workflows/script.sh"
+          script: "sudo /var/www/html/platita/.github/workflows/script.sh"
           debug: true
