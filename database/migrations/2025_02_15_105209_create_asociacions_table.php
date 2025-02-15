@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('asociacions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evento_id')->constrained('eventos');
-            $table->foreignId('usuario_id')->constrained('usuarios');
-            $table->string('comentario');
-            $table->dateTime('fecha');
-            $table->integer('valoracion');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('contacto');
+            $table->string('email');
+            $table->string('imagen');
+            $table->foreignId('gestor_id')->constrained('users');
+            $table->foreignId('asiste_evento_id');
             $table->timestamps();
         });
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('asociacions');
     }
 };

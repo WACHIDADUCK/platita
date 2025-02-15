@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Comentario;
 use App\Models\Evento;
-use App\Models\Usuario;
+use App\Models\User;
 
 class ComentarioFactory extends Factory
 {
@@ -24,10 +24,11 @@ class ComentarioFactory extends Factory
     {
         return [
             'evento_id' => Evento::factory(),
-            'usuario_id' => Usuario::factory(),
-            'comentario' => fake()->text(rand(5, 200)),
+            'usuario_id' => User::factory(),
+            'comentario' => fake()->word(),
             'fecha' => fake()->dateTime(),
-            'valoracion' => fake()->numberBetween(-1, 5),
+            'valoracion' => fake()->numberBetween(-10000, 10000),
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -6,45 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Asociacion;
 
-class AsociacionController extends Controller
+use Orion\Concerns\DisableAuthorization;
+use Orion\Http\Controllers\Controller as RelationController;
+
+class AsociacionController extends RelationController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return Asociacion::all();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    use DisableAuthorization;
+    protected $model = Asociacion::class;
 }

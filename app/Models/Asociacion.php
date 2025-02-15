@@ -23,6 +23,7 @@ class Asociacion extends Model
         'contacto',
         'email',
         'imagen',
+        'gestor_id',
         'asiste_evento_id',
     ];
 
@@ -33,17 +34,23 @@ class Asociacion extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'gestor_id' => 'integer',
         'asiste_evento_id' => 'integer',
     ];
 
     public function asisteEvento(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function usuarios(): BelongsToMany
+    public function gestor(): BelongsTo
     {
-        return $this->belongsToMany(Usuario::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function eventos(): BelongsToMany

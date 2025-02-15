@@ -22,6 +22,7 @@ class Comentario extends Model
         'comentario',
         'fecha',
         'valoracion',
+        'user_id',
     ];
 
     /**
@@ -34,6 +35,7 @@ class Comentario extends Model
         'evento_id' => 'integer',
         'usuario_id' => 'integer',
         'fecha' => 'datetime',
+        'user_id' => 'integer',
     ];
 
     public function evento(): BelongsTo
@@ -41,8 +43,13 @@ class Comentario extends Model
         return $this->belongsTo(Evento::class);
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 }

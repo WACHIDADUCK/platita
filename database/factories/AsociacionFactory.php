@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Asociacion;
-use App\Models\Usuario;
+use App\Models\User;
 
 class AsociacionFactory extends Factory
 {
@@ -22,12 +22,13 @@ class AsociacionFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake()->name(),
-            'descripcion' => fake()->text(),
-            'contacto' => fake()->phoneNumber(),
-            'email' => fake()->email(),
-            'imagen' => fake()->url(),
-            'gestor_id' => Usuario::factory(),
+            'nombre' => fake()->word(),
+            'descripcion' => fake()->word(),
+            'contacto' => fake()->word(),
+            'email' => fake()->safeEmail(),
+            'imagen' => fake()->word(),
+            'gestor_id' => User::factory(),
+            'asiste_evento_id' => User::factory(),
         ];
     }
 }
