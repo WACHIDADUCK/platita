@@ -42,9 +42,9 @@ class Evento extends Model
         'fecha_fin' => 'datetime',
     ];
 
-    public function usuarios(): BelongsToMany
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Usuario::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function comentarios(): HasMany

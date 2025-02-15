@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable(false);
-            $table->text('descripcion')->nullable(false);
+            $table->string('nombre');
+            $table->string('descripcion');
             $table->enum('tipo', ["evento","actividad"]);
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
@@ -27,6 +29,8 @@ return new class extends Migration
             $table->string('imagen');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
