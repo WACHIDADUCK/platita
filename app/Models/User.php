@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -44,5 +48,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function gestionaAsociaciones(): HasMany
+    {
+        return $this->hasMany(Asociacion::class);
+    }
+
+    public function tieneComentarios(): HasMany
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function asociacions(): BelongsToMany
+    {
+        return $this->belongsToMany(Asociacion::class);
+    }
+
+    public function eventos(): BelongsToMany
+    {
+        return $this->belongsToMany(Evento::class);
     }
 }

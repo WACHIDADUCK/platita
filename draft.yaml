@@ -1,12 +1,12 @@
 models:
-  Usuario:
-    nombre: string
-    email: string unique
-    password: string
-    admin: boolean
-    relationships:
-      hasMany: Asociacion:gestiona_asociaciones, Comentario:tiene_comentarios
-      belongsToMany: Asociacion, Evento
+  # Usuario:
+  #   nombre: string
+  #   email: string unique
+  #   password: string
+  #   admin: boolean
+  #   relationships:
+  #     hasMany: Asociacion:gestiona_asociaciones, Comentario:tiene_comentarios
+  #     belongsToMany: Asociacion, Evento
 
   Asociacion:
     nombre: string
@@ -14,9 +14,10 @@ models:
     contacto: string
     email: string
     imagen: string
+    gestor_id: foreign:User
     relationships:
-      belongsTo: Usuario:asiste_evento
-      belongsToMany: Usuario, Evento
+      belongsTo: User:asiste_evento
+      belongsToMany: User, Evento
 
   Evento:
     nombre: string
@@ -32,17 +33,17 @@ models:
     voluntarios: integer
     imagen: string
     relationships:
-      belongsToMany: Usuario
+      belongsToMany: User
       hasMany: Comentario
 
   Comentario:
     evento_id: foreign:evento
-    usuario_id: foreign:usuario
+    usuario_id: foreign:User
     comentario: string
     fecha: datetime
     valoracion: integer
     relationships:
-      belongsTo: Evento, Usuario
+      belongsTo: Evento, User
 
 
 
@@ -73,4 +74,4 @@ controllers:
   # ...
 
 
-seeders: Usuario, Asociacion, Evento, Comentario
+seeders: Asociacion, Evento, Comentario

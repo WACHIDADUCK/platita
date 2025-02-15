@@ -1,26 +1,21 @@
 created:
-    - database/factories/UsuarioFactory.php
     - database/factories/AsociacionFactory.php
     - database/factories/EventoFactory.php
     - database/factories/ComentarioFactory.php
-    - database/migrations/2025_02_14_113721_create_usuarios_table.php
-    - database/migrations/2025_02_14_113722_create_asociacions_table.php
-    - database/migrations/2025_02_14_113723_create_eventos_table.php
-    - database/migrations/2025_02_14_113724_create_comentarios_table.php
-    - database/migrations/2025_02_14_113725_create_asociacion_usuario_table.php
-    - database/migrations/2025_02_14_113726_create_evento_usuario_table.php
-    - database/migrations/2025_02_14_113727_create_asociacion_evento_table.php
-    - app/Models/Usuario.php
+    - database/migrations/2025_02_15_105209_create_asociacions_table.php
+    - database/migrations/2025_02_15_105210_create_eventos_table.php
+    - database/migrations/2025_02_15_105211_create_comentarios_table.php
+    - database/migrations/2025_02_15_105212_create_asociacion_user_table.php
+    - database/migrations/2025_02_15_105213_create_asociacion_evento_table.php
+    - database/migrations/2025_02_15_105214_create_evento_user_table.php
     - app/Models/Asociacion.php
     - app/Models/Evento.php
     - app/Models/Comentario.php
-    - database/seeders/UsuarioSeeder.php
     - database/seeders/AsociacionSeeder.php
     - database/seeders/EventoSeeder.php
     - database/seeders/ComentarioSeeder.php
 models:
-    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
-    Usuario: { nombre: string, email: 'string unique', password: string, admin: boolean, relationships: { hasMany: 'Asociacion:gestiona_asociaciones, Comentario:tiene_comentarios', belongsToMany: 'Asociacion, Evento' } }
-    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, imagen: string, relationships: { belongsTo: 'Usuario:asiste_evento', belongsToMany: 'Usuario, Evento' } }
-    Evento: { nombre: string, descripcion: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: integer, aforo_socios: integer, aforo_no_socios: integer, voluntarios: integer, imagen: string, relationships: { belongsToMany: Usuario, hasMany: Comentario } }
-    Comentario: { evento_id: 'foreign:evento', usuario_id: 'foreign:usuario', comentario: string, fecha: datetime, valoracion: integer, relationships: { belongsTo: 'Evento, Usuario' } }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable', admin: boolean }
+    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, imagen: string, gestor_id: 'foreign:User', relationships: { belongsTo: 'User:asiste_evento', belongsToMany: 'User, Evento' } }
+    Evento: { nombre: string, descripcion: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: integer, aforo_socios: integer, aforo_no_socios: integer, voluntarios: integer, imagen: string, relationships: { belongsToMany: User, hasMany: Comentario } }
+    Comentario: { evento_id: 'foreign:evento', usuario_id: 'foreign:User', comentario: string, fecha: datetime, valoracion: integer, relationships: { belongsTo: 'Evento, User' } }

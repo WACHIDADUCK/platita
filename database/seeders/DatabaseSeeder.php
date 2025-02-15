@@ -7,7 +7,7 @@ use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Asociacion;
 use App\Models\Evento;
 use App\Models\Comentario;
@@ -38,8 +38,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // ADMINISTRADOR
-        $admin = Usuario::factory()->create([
-            'nombre' => 'admin',
+        $admin = User::factory()->create([
+            'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
             'admin' => true
@@ -47,12 +47,12 @@ class DatabaseSeeder extends Seeder
 
 
         //USUARIOS CON ASOCIACIONES
-        $usuariosConAsociaciones = Usuario::factory(3)->create();
+        $usuariosConAsociaciones = User::factory(3)->create();
 
-        foreach ($usuariosConAsociaciones as $usuario) {
+        foreach ($usuariosConAsociaciones as $User) {
             $asociaciones = Asociacion::factory(rand(1, 2))->create();
             foreach ($asociaciones as $asociacion) {
-                $asociacion->gestor_id = $usuario->id;
+                $asociacion->gestor_id = $User->id;
                 $asociacion->save();
 
                 // Crear eventos y asociarlos a la asociación
@@ -65,15 +65,15 @@ class DatabaseSeeder extends Seeder
 
 
         //USUARIOS NORMALES
-        $usuariosNormales = Usuario::factory(10)->create();
-        foreach ($usuariosNormales as $usuario) {
-            $usuario->admin = false;
-            $usuario->save();
+        $usuariosNormales = User::factory(10)->create();
+        foreach ($usuariosNormales as $User) {
+            $User->admin = false;
+            $User->save();
 
-            // Obtener asociaciones aleatorias y asociarlas al usuario
+            // Obtener asociaciones aleatorias y asociarlas al User
             $asociaciones = Asociacion::inRandomOrder()->take(rand(1, 3))->get();
             foreach ($asociaciones as $asociacion) {
-                $usuario->asociacions()->attach($asociacion->id);
+                $User->asociacions()->attach($asociacion->id);
             }
         }
 
@@ -82,9 +82,9 @@ class DatabaseSeeder extends Seeder
 
         $eventos = Evento::all();
         foreach ($eventos as $evento) {
-            $usuarios = Usuario::inRandomOrder()->take(rand(1, 5))->get();
-            foreach ($usuarios as $usuario) {
-                $usuario->eventos()->attach($evento->id);
+            $usuarios = User::inRandomOrder()->take(rand(1, 5))->get();
+            foreach ($usuarios as $User) {
+                $User->eventos()->attach($evento->id);
             }
         }
 
@@ -92,22 +92,17 @@ class DatabaseSeeder extends Seeder
         //COMENTARIOS
         $comentarios = Comentario::factory(20)->create();
         foreach ($comentarios as $comentario) {
-            $usuario = Usuario::inRandomOrder()->first();
+            $User = User::inRandomOrder()->first();
             $evento = Evento::inRandomOrder()->first();
-            $comentario->usuario_id = $usuario->id;
+            $comentario->usuario_id = $User->id;
             $comentario->evento_id = $evento->id;
             $comentario->save();
         }
 
 
-
-
-
-        // foreach ($usuariosNormales as $usuario) {
-        //     $usuario->asociaciones()->attach($asociaciones->random(2));
+        // foreach ($usuariosNormales as $User) {
+        //     $User->asociaciones()->attach($asociaciones->random(2));
         // }
-
-
 
 
     }
