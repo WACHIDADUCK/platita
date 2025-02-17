@@ -28,9 +28,9 @@ class EventoFactory extends Factory
             'fecha_fin' => fake()->dateTime(),
             'accesibilidad' => fake()->randomElement(["socios","publico","privado","mixto"]),
             'estado' => fake()->randomElement(["abierto","cerrado"]),
-            'aforo' => fake()->numberBetween(-10000, 10000),
-            'aforo_socios' => fake()->numberBetween(-10000, 10000),
-            'aforo_no_socios' => fake()->numberBetween(-10000, 10000),
+            'aforo' => fake()->numberBetween(00000, 10000),
+            'aforo_socios' => fake()->numberBetween(00000, 10000),
+            'aforo_no_socios' => fake()->numberBetween(00000, 10000),
             'voluntarios' => fake()->numberBetween(00000, 10000),
             'imagen' => "https://picsum.photos/300/300",
         ];
