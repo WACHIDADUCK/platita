@@ -21,8 +21,8 @@ class EventoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake()->word(),
-            'descripcion' => fake()->word(),
+            'nombre' => fake()->name(),
+            'descripcion' => fake()->text(),
             'tipo' => fake()->randomElement(["evento","actividad"]),
             'fecha_inicio' => fake()->dateTime(),
             'fecha_fin' => fake()->dateTime(),
@@ -31,8 +31,8 @@ class EventoFactory extends Factory
             'aforo' => fake()->numberBetween(-10000, 10000),
             'aforo_socios' => fake()->numberBetween(-10000, 10000),
             'aforo_no_socios' => fake()->numberBetween(-10000, 10000),
-            'voluntarios' => fake()->numberBetween(-10000, 10000),
-            'imagen' => fake()->word(),
+            'voluntarios' => fake()->numberBetween(00000, 10000),
+            'imagen' => "https://picsum.photos/300/300",
         ];
     }
 }
