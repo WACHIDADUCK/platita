@@ -90,15 +90,29 @@ class DatabaseSeeder extends Seeder
 
 
         //COMENTARIOS
-        $comentarios = Comentario::factory(20)->create();
-        foreach ($comentarios as $comentario) {
-            $User = User::inRandomOrder()->first();
-            $evento = Evento::inRandomOrder()->first();
-            $comentario->usuario_id = $User->id;
-            $comentario->evento_id = $evento->id;
-            $comentario->save();
-        }
+        // Crear 20 comentarios usando factories
+        $comentarios = Comentario::factory(20)->make(); // Usar make() en lugar de create()
 
+        foreach ($comentarios as $comentario) {
+            // Asignar un usuario aleatorio
+            $user = User::inRandomOrder()->first();
+            $comentario->user_id = $user->id;
+
+            // Elegir un modelo relacionado aleatorio (Asociacion o Evento)
+            if (rand(0, 1) == 0) {
+                $owner = Asociacion::inRandomOrder()->first();
+            } else {
+                $owner = Evento::inRandomOrder()->first();
+            }
+
+            // Guardar el comentario asociándolo con el modelo relacionado
+            if ($owner) {
+                $owner->comentarios()->save($comentario);
+            } else {
+                // Si no hay registros en Asociacion o Evento, manejar el error
+                throw new \Exception("No hay registros en Asociacion o Evento.");
+            }
+        }
 
         // foreach ($usuariosNormales as $User) {
         //     $User->asociaciones()->attach($asociaciones->random(2));

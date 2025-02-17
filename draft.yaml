@@ -18,6 +18,7 @@ models:
     relationships:
       belongsTo: User:asiste_evento
       belongsToMany: User, Evento
+      morphMany: Comentario
 
   Evento:
     nombre: string
@@ -34,17 +35,16 @@ models:
     imagen: string
     relationships:
       belongsToMany: User
-      hasMany: Comentario
+      morphMany: Comentario
 
   Comentario:
-    evento_id: foreign:evento
-    usuario_id: foreign:User
+    user_id: foreign:User
     comentario: string
     fecha: datetime
     valoracion: integer
     relationships:
-      belongsTo: Evento, User
-
+      belongsTo: User
+      morphTo: comentarioable
 
 
 
