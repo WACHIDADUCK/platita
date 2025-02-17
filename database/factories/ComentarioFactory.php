@@ -25,9 +25,9 @@ class ComentarioFactory extends Factory
         return [
             'evento_id' => Evento::factory(),
             'usuario_id' => User::factory(),
-            'comentario' => fake()->word(),
+            'comentario' => fake()->text(),
             'fecha' => fake()->dateTime(),
-            'valoracion' => fake()->numberBetween(-10000, 10000),
+            'valoracion' => fake()->numberBetween(00000, 10000),
             'user_id' => User::factory(),
         ];
     }
