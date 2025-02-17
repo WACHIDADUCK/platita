@@ -24,7 +24,7 @@ class AsociacionFactory extends Factory
         return [
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
-            'contacto' => fake()->number(),
+            'contacto' => fake()->phoneNumber(),
             'email' => fake()->safeEmail(),
             'imagen' => "https://picsum.photos/300/300",
             'gestor_id' => User::factory(),
