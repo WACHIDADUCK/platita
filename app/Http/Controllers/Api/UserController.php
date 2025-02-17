@@ -16,4 +16,5 @@ class UserController extends RelationController
 {
     use DisableAuthorization;
     protected $model = User::class;
+
 }

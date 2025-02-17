@@ -12,7 +12,7 @@ echo '==> npm run build'; npm run build
 
 echo '==> chown / chmod';
 chown -R www-data:www-data /var/www/html/platita;
-chmod -R 755 /var/www/html/platita;
+chmod -R 775 /var/www/html/platita;
 chmod -R 775 /var/www/html/platita/storage;
 chmod -R 775 /var/www/html/platita/bootstrap/cache;
 
