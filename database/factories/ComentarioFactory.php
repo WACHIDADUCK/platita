@@ -26,7 +26,6 @@ class ComentarioFactory extends Factory
             'comentario' => fake()->word(),
             'fecha' => fake()->dateTime(),
             'valoracion' => fake()->numberBetween(-10000, 10000),
-
         ];
     }
 }
