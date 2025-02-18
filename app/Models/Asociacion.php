@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Asociacion extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -54,5 +57,10 @@ class Asociacion extends Model
     public function eventos(): BelongsToMany
     {
         return $this->belongsToMany(Evento::class);
+    }
+
+    public function comentarios(): MorphMany
+    {
+        return $this->morphMany(Comentario::class, 'comentarioable');
     }
 }

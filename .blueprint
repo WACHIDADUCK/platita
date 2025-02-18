@@ -2,12 +2,13 @@ created:
     - database/factories/AsociacionFactory.php
     - database/factories/EventoFactory.php
     - database/factories/ComentarioFactory.php
-    - database/migrations/2025_02_18_104905_create_asociacions_table.php
-    - database/migrations/2025_02_18_104906_create_eventos_table.php
-    - database/migrations/2025_02_18_104907_create_comentarios_table.php
-    - database/migrations/2025_02_18_104908_create_asociacion_user_table.php
-    - database/migrations/2025_02_18_104909_create_asociacion_evento_table.php
-    - database/migrations/2025_02_18_104910_create_evento_user_table.php
+    - database/migrations/2025_02_17_211213_create_asociacions_table.php
+    - database/migrations/2025_02_17_211214_create_eventos_table.php
+    - database/migrations/2025_02_17_211215_create_comentarios_table.php
+    - database/migrations/2025_02_17_211216_create_asociacion_user_table.php
+    - database/migrations/2025_02_17_211217_create_asociacion_evento_table.php
+    - database/migrations/2025_02_17_211218_create_evento_user_table.php
+
     - app/Models/Asociacion.php
     - app/Models/Evento.php
     - app/Models/Comentario.php
@@ -16,6 +17,6 @@ created:
     - database/seeders/ComentarioSeeder.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable', admin: boolean }
-    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, imagen: 'string nullable', relationships: { belongsTo: 'User:gestor', belongsToMany: 'User, Evento' } }
-    Evento: { nombre: string, descripcion: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: 'integer nullable', aforo_socios: 'integer nullable', aforo_no_socios: 'integer nullable', voluntarios: 'integer nullable', imagen: 'string nullable', relationships: { belongsToMany: User, hasMany: Comentario } }
-    Comentario: { evento_id: 'foreign:evento', usuario_id: 'foreign:User', comentario: string, fecha: datetime, valoracion: 'integer nullable', relationships: { belongsTo: 'Evento, User' } }
+    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, imagen: string, gestor_id: 'foreign:User', relationships: { belongsTo: 'User:asiste_evento', belongsToMany: 'User, Evento', morphMany: Comentario } }
+    Evento: { nombre: string, descripcion: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: integer, aforo_socios: integer, aforo_no_socios: integer, voluntarios: integer, imagen: string, relationships: { belongsToMany: User, morphMany: Comentario } }
+    Comentario: { user_id: 'foreign:User', comentario: string, fecha: datetime, valoracion: integer, relationships: { belongsTo: User, morphTo: comentarioable } }

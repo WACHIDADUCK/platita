@@ -15,12 +15,11 @@ return new class extends Migration
 
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evento_id')->constrained();
-            $table->foreignId('usuario_id')->constrained('users');
+            $table->foreignId('user_id')->constrained();
             $table->string('comentario');
             $table->dateTime('fecha');
             $table->integer('valoracion');
-            $table->foreignId('user_id');
+            $table->morphs('comentarioable');
             $table->timestamps();
         });
 

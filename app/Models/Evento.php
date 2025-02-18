@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Evento extends Model
 {
-    use HasFactory;
-
+    use HasFactory, Notifiable, HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -47,8 +48,8 @@ class Evento extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function comentarios(): HasMany
+    public function comentarios(): MorphMany
     {
-        return $this->hasMany(Comentario::class);
+        return $this->morphMany(Comentario::class, 'comentarioable');
     }
 }
