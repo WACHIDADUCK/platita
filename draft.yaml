@@ -8,15 +8,16 @@ models:
   #     hasMany: Asociacion:gestiona_asociaciones, Comentario:tiene_comentarios
   #     belongsToMany: Asociacion, Evento
 
+
   Asociacion:
     nombre: string
     descripcion: string
     contacto: string
     email: string
-    imagen: string
-    gestor_id: foreign:User
+    imagen: string nullable
+    # gestor_id: foreign:User
     relationships:
-      belongsTo: User:asiste_evento
+      belongsTo: User:gestor
       belongsToMany: User, Evento
       morphMany: Comentario
 
@@ -28,11 +29,11 @@ models:
     fecha_fin: datetime
     accesibilidad: enum:socios,publico,privado,mixto
     estado: enum:abierto,cerrado
-    aforo: integer
-    aforo_socios: integer
-    aforo_no_socios: integer
-    voluntarios: integer
-    imagen: string
+    aforo: integer nullable
+    aforo_socios: integer nullable
+    aforo_no_socios: integer nullable
+    voluntarios: integer nullable
+    imagen: string nullable
     relationships:
       belongsToMany: User
       morphMany: Comentario
@@ -41,7 +42,7 @@ models:
     user_id: foreign:User
     comentario: string
     fecha: datetime
-    valoracion: integer
+    valoracion: integer nullable
     relationships:
       belongsTo: User
       morphTo: comentarioable

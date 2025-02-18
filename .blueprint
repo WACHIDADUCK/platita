@@ -8,6 +8,7 @@ created:
     - database/migrations/2025_02_17_211216_create_asociacion_user_table.php
     - database/migrations/2025_02_17_211217_create_asociacion_evento_table.php
     - database/migrations/2025_02_17_211218_create_evento_user_table.php
+
     - app/Models/Asociacion.php
     - app/Models/Evento.php
     - app/Models/Comentario.php
