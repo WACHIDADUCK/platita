@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Asociacion extends Model
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +24,6 @@ class Asociacion extends Model
         'email',
         'imagen',
         'gestor_id',
-        'asiste_evento_id',
     ];
 
     /**
@@ -36,13 +34,7 @@ class Asociacion extends Model
     protected $casts = [
         'id' => 'integer',
         'gestor_id' => 'integer',
-        'asiste_evento_id' => 'integer',
     ];
-
-    public function asisteEvento(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function gestor(): BelongsTo
     {

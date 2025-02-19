@@ -11,8 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
@@ -22,15 +20,13 @@ return new class extends Migration
             $table->dateTime('fecha_fin');
             $table->enum('accesibilidad', ["socios","publico","privado","mixto"]);
             $table->enum('estado', ["abierto","cerrado"]);
-            $table->integer('aforo');
-            $table->integer('aforo_socios');
-            $table->integer('aforo_no_socios');
-            $table->integer('voluntarios');
-            $table->string('imagen');
+            $table->integer('aforo')->nullable();
+            $table->integer('aforo_socios')->nullable();
+            $table->integer('aforo_no_socios')->nullable();
+            $table->integer('voluntarios')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
