@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -25,19 +25,40 @@ class AuthController extends Controller
                 "message" => "Credenciales incorrectas"
             ], 401);
         }
-        ;
 
         $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
+
+        // Crear una cookie con el token
+        $cookie = cookie('auth_token', $token, 60 * 24); // 1 día de duración
 
         return response()->json([
             "message" => "Login correcto",
             "token" => $token,
             "token_type" => "Bearer"
-        ], 200);
+        ], 200)->cookie($cookie);
     }
 
 
 
+
+    public function logout(Request $request): JsonResponse
+    {
+        $user = User::where("email", $request->email)->first();
+        if ($user) {
+            $user->tokens()->delete();
+
+            // Eliminar la cookie
+            $cookie = Cookie::forget('auth_token');
+
+            return response()->json([
+                "message" => "Sesión cerrada",
+            ], 200)->$cookie;
+        } else {
+            return response()->json([
+                "message" => "No encontrado"
+            ], 401);
+        }
+    }
 
     public function register(Request $request): JsonResponse
     {
@@ -56,23 +77,19 @@ class AuthController extends Controller
         if ($user) {
             $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
+            // Crear una cookie con el token
+            $cookie = cookie('XSRF-TOKEN', $token, 60 * 24); // 1 día de duración
+
             return response()->json([
                 "message" => "Registro correcto",
                 "token" => $token,
                 "token_type" => "Bearer"
-            ], 201);
+            ], 201)->$cookie;
         } else {
-            if ($user) {
-                $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
-
-                return response()->json([
-                    "message" => "Error al registrar",
-
-                ], 500);
-            }
+            return response()->json([
+                "message" => "Error al registrar",
+            ], 500);
         }
-        ;
-
     }
 
     public function profile(Request $request): JsonResponse
@@ -87,23 +104,6 @@ class AuthController extends Controller
                 "message" => "No hay usuario logueado"
             ], 401);
         }
-        ;
-    }
-
-    public function logout(Request $request)
-    {
-        $user = User::where("email", $request->email)->first();
-        if ($user) {
-            $user->tokens()->delete();
-            return response()->json([
-                "message" => "Sesión cerrada",
-            ], 200);
-        } else {
-            return response()->json([
-                "message" => "No encontrado"
-            ], 401);
-        }
-        ;
     }
 
 

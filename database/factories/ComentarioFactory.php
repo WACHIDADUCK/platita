@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Comentario;
 use App\Models\User;
+use App\Models\Evento;
 
 class ComentarioFactory extends Factory
 {
@@ -25,7 +26,7 @@ class ComentarioFactory extends Factory
             'user_id' => User::factory(),
             'comentario' => fake()->word(),
             'fecha' => fake()->dateTime(),
-            'valoracion' => fake()->numberBetween(-10000, 10000),
+            'valoracion' => fake()->numberBetween(1, 5),
         ];
     }
 }

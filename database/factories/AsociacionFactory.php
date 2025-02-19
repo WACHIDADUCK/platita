@@ -23,10 +23,10 @@ class AsociacionFactory extends Factory
     {
         return [
             'nombre' => fake()->name(),
-            'descripcion' => fake()->word(),
-            'contacto' => fake()->word(),
+            'descripcion' => fake()->text(),
+            'contacto' => fake()->phoneNumber(),
             'email' => fake()->safeEmail(),
-            'imagen' => fake()->word(),
+            'imagen' => "https://picsum.photos/300/300",
             'gestor_id' => User::factory(),
         ];
     }
