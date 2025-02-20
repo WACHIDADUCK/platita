@@ -29,13 +29,12 @@ class AuthController extends Controller
         $token = $user->createToken($user->name . 'Auth-Token')->plainTextToken;
 
         // Crear una cookie con el token
-        $cookie = cookie('auth_token', $token, 60 * 24); // 1 día de duración
-
+        $cookie = cookie('X-XSRF-TOKEN', $token, 60 * 24); // 1 día de duración
         return response()->json([
             "message" => "Login correcto",
-            "token" => $token,
+            "token" => Hash::make($token),
             "token_type" => "Bearer"
-        ], 200)->cookie($cookie);
+        ], 200)->withCookie($cookie);
     }
 
 

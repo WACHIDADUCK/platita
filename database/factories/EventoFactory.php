@@ -21,8 +21,9 @@ class EventoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake()->name(),
+            'nombre' => fake()->sentence(),
             'descripcion' => fake()->text(),
+            'lugar' => fake()->address(),
             'tipo' => fake()->randomElement(["evento","actividad"]),
             'fecha_inicio' => fake()->dateTime(),
             'fecha_fin' => fake()->dateTime(),

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('lugar');
             $table->enum('tipo', ["evento","actividad"]);
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');

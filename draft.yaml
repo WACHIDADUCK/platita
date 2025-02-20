@@ -24,18 +24,22 @@ models:
   Evento:
     nombre: string
     descripcion: string
+    lugar: string
     tipo: enum:evento,actividad
     fecha_inicio: datetime
     fecha_fin: datetime
     accesibilidad: enum:socios,publico,privado,mixto
     estado: enum:abierto,cerrado
     aforo: integer nullable
+    contador_aforo: integer nullable
     aforo_socios: integer nullable
+    contador_aforo_socios: integer nullable
     aforo_no_socios: integer nullable
+    contador_aforo_no_socios: integer nullable
     voluntarios: integer nullable
     imagen: string nullable
     relationships:
-      belongsToMany: User
+      belongsToMany: User, Asociacion
       morphMany: Comentario
 
   Comentario:
