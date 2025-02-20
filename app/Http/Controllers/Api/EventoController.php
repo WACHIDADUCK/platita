@@ -20,7 +20,7 @@ class EventoController extends RelationController
 
     public function index(Request $request): JsonResponse
     {
-        $eventos = Evento::with(['asociaciones', 'users', 'comentarios'])
+        $eventos = Evento::with(['asociacions', 'users', 'comentarios'])
             ->withCount('users')
             ->get();
 

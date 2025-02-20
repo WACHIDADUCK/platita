@@ -22,9 +22,13 @@ return new class extends Migration
             $table->enum('accesibilidad', ["socios","publico","privado","mixto"]);
             $table->enum('estado', ["abierto","cerrado"]);
             $table->integer('aforo')->nullable();
+            $table->integer('contador_aforo')->nullable();
             $table->integer('aforo_socios')->nullable();
+            $table->integer('contador_aforo_socios')->nullable();
             $table->integer('aforo_no_socios')->nullable();
-            $table->integer('voluntarios')->nullable();
+            $table->integer('contador_aforo_no_socios')->nullable();
+            $table->integer('aforo_voluntarios')->nullable();
+            $table->integer('contador_aforo_voluntarios')->nullable();
             $table->string('imagen')->nullable();
             $table->timestamps();
         });

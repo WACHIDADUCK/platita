@@ -36,7 +36,8 @@ models:
     contador_aforo_socios: integer nullable
     aforo_no_socios: integer nullable
     contador_aforo_no_socios: integer nullable
-    voluntarios: integer nullable
+    aforo_voluntarios: integer nullable
+    contador_aforo_voluntarios: integer nullable
     imagen: string nullable
     relationships:
       belongsToMany: User, Asociacion
