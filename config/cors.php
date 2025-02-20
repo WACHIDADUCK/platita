@@ -15,17 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie','login','register'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'register', 'logout'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://platita.test',
-        'https://guillermo.informaticamajada.es',
-        'https://platita-front-git-main-wachidaducks-projects.vercel.app'
-    ],
+    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000'), 'http://localhost:5173', 'https://platita-front-git-main-wachidaducks-projects.vercel.app'],
 
     'allowed_origins_patterns' => [],
 
