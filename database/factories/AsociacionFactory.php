@@ -28,7 +28,6 @@ class AsociacionFactory extends Factory
             'email' => fake()->safeEmail(),
             'imagen' => "https://picsum.photos/300/300",
             'gestor_id' => User::factory(),
-            'asiste_evento_id' => User::factory(),
         ];
     }
 }

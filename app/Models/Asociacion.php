@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Asociacion extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +24,6 @@ class Asociacion extends Model
         'email',
         'imagen',
         'gestor_id',
-        'asiste_evento_id',
     ];
 
     /**
@@ -33,13 +34,7 @@ class Asociacion extends Model
     protected $casts = [
         'id' => 'integer',
         'gestor_id' => 'integer',
-        'asiste_evento_id' => 'integer',
     ];
-
-    public function asisteEvento(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function gestor(): BelongsTo
     {
@@ -54,5 +49,10 @@ class Asociacion extends Model
     public function eventos(): BelongsToMany
     {
         return $this->belongsToMany(Evento::class);
+    }
+
+    public function comentarios(): MorphMany
+    {
+        return $this->morphMany(Comentario::class, 'comentarioable');
     }
 }
