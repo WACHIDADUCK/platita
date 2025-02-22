@@ -22,9 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->statefulApi();
         $middleware->validateCsrfTokens(except: [
-            'api/login', 'login'
+            'api/login',
+            'login',
+            'logout'
         ]);
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
