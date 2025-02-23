@@ -19,8 +19,8 @@ return [
 
     'allowed_methods' => ['OPTIONS', '*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000'), 'http://localhost:5173', 'https://localhost:5173', 'http://platita-front.vercel.app'],
-
+    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000'), '*'],
+    //'http://localhost:5173', 'https://localhost:5173', 'http://platita-front.vercel.app'
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
