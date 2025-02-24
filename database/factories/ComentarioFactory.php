@@ -23,9 +23,9 @@ class ComentarioFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'comentario' => fake()->word(),
+            'comentario' => fake()->sentence(),
             'fecha' => fake()->dateTime(),
-            'valoracion' => fake()->numberBetween(-10000, 10000),
+            'valoracion' => fake()->numberBetween(0, 5),
         ];
     }
 }
