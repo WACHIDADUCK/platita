@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
-
+use Illuminate\Support\Facades\Log;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller as RelationController;
 
@@ -16,6 +16,9 @@ class ComentarioController extends RelationController
 
     public function store(Request $request)
     {
+        // Depura el valor recibido
+        Log::info('Datos recibidos:', $request->all());
+        // O
         dd($request->all());
 
         // Validación y creación del comentario
