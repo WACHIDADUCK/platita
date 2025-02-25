@@ -16,11 +16,6 @@ class ComentarioController extends RelationController
 
     public function store(Request $request)
     {
-        // Depura el valor recibido
-        Log::info('Datos recibidos:', $request->all());
-        // O
-        dd($request->all());
-
         // Validación y creación del comentario
         $request->validate([
             'user_id' => 'required|exists:users,id',
