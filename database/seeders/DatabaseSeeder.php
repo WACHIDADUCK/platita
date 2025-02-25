@@ -48,38 +48,46 @@ class DatabaseSeeder extends Seeder
 
         //USUARIOS CON ASOCIACIONES
         $usuariosConAsociaciones = User::factory(3)->create();
-        $usuariosConAsociaciones[0]->name = 'Gestor 1';
-        $usuariosConAsociaciones[0]->email = 'gestor1@gestor1.com';
-        $usuariosConAsociaciones[0]->password = bcrypt('password');
 
-        $usuariosConAsociaciones[1]->name = 'Gestor 2';
-        $usuariosConAsociaciones[1]->email = 'gestor2@gestor2.com';
-        $usuariosConAsociaciones[1]->password = bcrypt('password');
+        $usuariosConAsociaciones[0]->update([
+            'name' => 'Gestor 1',
+            'email' => 'gestor1@gestor1.com',
+            'password' => bcrypt('password')
+        ]);
 
-        $usuariosConAsociaciones[2]->name = 'Gestor 3';
-        $usuariosConAsociaciones[2]->email = 'gestor3@gestor3.com';
-        $usuariosConAsociaciones[2]->password = bcrypt('password');
-        foreach ($usuariosConAsociaciones as $User) {
+        $usuariosConAsociaciones[1]->update([
+            'name' => 'Gestor 2',
+            'email' => 'gestor2@gestor2.com',
+            'password' => bcrypt('password')
+        ]);
 
+        $usuariosConAsociaciones[2]->update([
+            'name' => 'Gestor 3',
+            'email' => 'gestor3@gestor3.com',
+            'password' => bcrypt('password')
+        ]);
+
+        foreach ($usuariosConAsociaciones as $user) {
             $asociaciones = Asociacion::factory(rand(1, 2))->create();
 
             foreach ($asociaciones as $asociacion) {
-                $asociacion->gestor_id = $User->id;
+                $asociacion->gestor_id = $user->id;
                 $asociacion->save();
 
                 // Crear eventos y asociarlos a la asociación
                 $eventos = Evento::factory(rand(2, 3))->create();
-                $eventos[0]->estado = "abierto";
-                $eventos[1]->estado = "cerrado";
+                $eventos[0]->update(['estado' => 'abierto']);
+                $eventos[1]->update(['estado' => 'cerrado']);
                 foreach ($eventos as $evento) {
                     $asociacion->eventos()->attach($evento->id);
                 }
             }
         }
-        foreach ($usuariosConAsociaciones as $User) {
+
+        foreach ($usuariosConAsociaciones as $user) {
             $asociaciones = Asociacion::inRandomOrder()->take(rand(1, 3))->get();
             foreach ($asociaciones as $asociacion) {
-                $User->asociacions()->attach($asociacion->id);
+                $user->asociacions()->attach($asociacion->id);
             }
         }
 
@@ -87,18 +95,19 @@ class DatabaseSeeder extends Seeder
         //USUARIOS NORMALES
         $usuariosNormales = User::factory(200)->create();
 
-        $usuariosNormales[0]->name = 'Normal 1';
-        $usuariosNormales[0]->email = 'normal1@normal1.com';
-        $usuariosNormales[0]->password = bcrypt('password');
+        $usuariosNormales[0]->update([
+            'name' => 'Normal 1',
+            'email' => 'normal1@normal1.com',
+            'password' => bcrypt('password')
+        ]);
 
-        foreach ($usuariosNormales as $User) {
-            $User->admin = false;
-            $User->save();
+        foreach ($usuariosNormales as $user) {
+            $user->update(['admin' => false]);
 
             // Obtener asociaciones aleatorias y asociarlas al User
             $asociaciones = Asociacion::inRandomOrder()->take(rand(1, 3))->get();
             foreach ($asociaciones as $asociacion) {
-                $User->asociacions()->attach($asociacion->id);
+                $user->asociacions()->attach($asociacion->id);
             }
         }
 
@@ -108,8 +117,8 @@ class DatabaseSeeder extends Seeder
         $eventos = Evento::all();
         foreach ($eventos as $evento) {
             $usuarios = User::inRandomOrder()->take(rand(10, 100))->get();
-            foreach ($usuarios as $User) {
-                $User->eventos()->attach($evento->id);
+            foreach ($usuarios as $user) {
+                $user->eventos()->attach($evento->id);
             }
         }
 
