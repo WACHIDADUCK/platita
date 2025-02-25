@@ -29,12 +29,12 @@ class ComentarioController extends RelationController
             'comentarioable_type' => 'required|string', // Asegúrate de que esté presente
             'comentarioable_id' => 'required|integer',
         ]);
-
+        $namespace = "App\Models\"";
         $comentario = Comentario::create([
             'user_id' => $request->user_id,
             'comentario' => $request->comentario,
             'valoracion' => $request->valoracion,
-            'comentarioable_type' => $request->comentarioable_type, // Asigna el valor
+            'comentarioable_type' => $namespace . $request->comentarioable_type, // Asigna el valor
             'comentarioable_id' => $request->comentarioable_id,
         ]);
 
