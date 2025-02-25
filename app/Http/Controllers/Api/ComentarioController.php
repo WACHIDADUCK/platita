@@ -14,28 +14,28 @@ class ComentarioController extends RelationController
     use DisableAuthorization;
     protected $model = Comentario::class;
 
-    public function store(Request $request)
-    {
-        // Validación y creación del comentario
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'comentario' => 'required|string',
-            'valoracion' => 'nullable|integer',
-            'comentarioable_type' => 'required|string', // Asegúrate de que esté presente
-            'comentarioable_id' => 'required|integer',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     // Validación y creación del comentario
+    //     $request->validate([
+    //         'user_id' => 'required|exists:users,id',
+    //         'comentario' => 'required|string',
+    //         'valoracion' => 'nullable|integer',
+    //         'comentarioable_type' => 'required|string', // Asegúrate de que esté presente
+    //         'comentarioable_id' => 'required|integer',
+    //     ]);
 
-        if ($request->comentarioable_type == "Asociacion") $type = "App\Models\Asociacion";
-        else $type = "App\Models\Evento";
+    //     // if ($request->comentarioable_type == "Asociacion") $type = "App\Models\Asociacion";
+    //     // else $type = "App\Models\Evento";
 
-        $comentario = Comentario::create([
-            'user_id' => $request->user_id,
-            'comentario' => $request->comentario,
-            'valoracion' => $request->valoracion,
-            'comentarioable_type' => $type, // Asigna el valor
-            'comentarioable_id' => $request->comentarioable_id,
-        ]);
+    //     $comentario = Comentario::create([
+    //         'user_id' => $request->user_id,
+    //         'comentario' => $request->comentario,
+    //         'valoracion' => $request->valoracion,
+    //         'comentarioable_type' => $request->comentarioable_type, // Asigna el valor
+    //         'comentarioable_id' => $request->comentarioable_id,
+    //     ]);
 
-        return response()->json($comentario, 201);
-    }
+    //     return response()->json($comentario, 201);
+    // }
 }
