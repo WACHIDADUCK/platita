@@ -21,6 +21,8 @@ class Comentario extends Model
         'comentario',
         'fecha',
         'valoracion',
+        'comentarioable_type',
+        'comentarioable_id',
     ];
 
     /**
