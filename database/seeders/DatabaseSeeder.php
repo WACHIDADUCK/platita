@@ -86,6 +86,11 @@ class DatabaseSeeder extends Seeder
 
         //USUARIOS NORMALES
         $usuariosNormales = User::factory(200)->create();
+
+        $usuariosNormales[0]->name = 'Normal 1';
+        $usuariosNormales[0]->email = 'normal1@normal1.com';
+        $usuariosNormales[0]->password = bcrypt('password');
+
         foreach ($usuariosNormales as $User) {
             $User->admin = false;
             $User->save();
