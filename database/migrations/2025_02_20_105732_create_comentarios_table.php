@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('comentario');
-            $table->dateTime('fecha');
+            $table->dateTime('fecha')->useCurrent();
             $table->integer('valoracion')->nullable();
             $table->morphs('comentarioable');
             $table->timestamps();
