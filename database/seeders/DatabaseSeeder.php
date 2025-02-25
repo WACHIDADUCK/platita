@@ -48,9 +48,21 @@ class DatabaseSeeder extends Seeder
 
         //USUARIOS CON ASOCIACIONES
         $usuariosConAsociaciones = User::factory(3)->create();
+        $usuariosConAsociaciones[0]->name = 'Gestor 1';
+        $usuariosConAsociaciones[0]->email = 'gestor1@gestor1.com';
+        $usuariosConAsociaciones[0]->password = bcrypt('password');
 
+        $usuariosConAsociaciones[1]->name = 'Gestor 2';
+        $usuariosConAsociaciones[1]->email = 'gestor2@gestor2.com';
+        $usuariosConAsociaciones[1]->password = bcrypt('password');
+
+        $usuariosConAsociaciones[2]->name = 'Gestor 3';
+        $usuariosConAsociaciones[2]->email = 'gestor3@gestor3.com';
+        $usuariosConAsociaciones[2]->password = bcrypt('password');
         foreach ($usuariosConAsociaciones as $User) {
+
             $asociaciones = Asociacion::factory(rand(1, 2))->create();
+
             foreach ($asociaciones as $asociacion) {
                 $asociacion->gestor_id = $User->id;
                 $asociacion->save();
@@ -74,6 +86,11 @@ class DatabaseSeeder extends Seeder
 
         //USUARIOS NORMALES
         $usuariosNormales = User::factory(200)->create();
+
+        $usuariosNormales[0]->name = 'Normal 1';
+        $usuariosNormales[0]->email = 'normal1@normal1.com';
+        $usuariosNormales[0]->password = bcrypt('password');
+
         foreach ($usuariosNormales as $User) {
             $User->admin = false;
             $User->save();
