@@ -91,7 +91,6 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-
         //USUARIOS NORMALES
         $usuariosNormales = User::factory(200)->create();
 
