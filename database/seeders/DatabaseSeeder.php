@@ -72,6 +72,7 @@ class DatabaseSeeder extends Seeder
 
             foreach ($asociaciones as $asociacion) {
                 $asociacion->gestor_id = $user->id;
+                $asociacion->acreditado = 1;
                 $asociacion->save();
 
                 // Crear eventos y asociarlos a la asociación
@@ -90,6 +91,10 @@ class DatabaseSeeder extends Seeder
                 $user->asociacions()->attach($asociacion->id);
             }
         }
+
+        $asociacioneSinAcreditar = Asociacion::inRandomOrder()->first();
+        $asociacioneSinAcreditar->acreditado = 0;
+        $asociacioneSinAcreditar->save();
 
         //USUARIOS NORMALES
         $usuariosNormales = User::factory(200)->create();
@@ -125,6 +130,7 @@ class DatabaseSeeder extends Seeder
         //COMENTARIOS
         // Crear 20 comentarios usando factories
         $comentarios = Comentario::factory(20)->make(); // Usar make() en lugar de create()
+
 
         foreach ($comentarios as $comentario) {
             // Asignar un usuario aleatorio
