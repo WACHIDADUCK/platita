@@ -31,7 +31,7 @@ class Evento extends Model
         'contador_aforo_socios',
         'aforo_no_socios',
         'contador_aforo_no_socios',
-        'afotor_voluntarios',
+        'aforo_voluntarios',
         'contador_aforo_voluntarios',
         'imagen',
     ];

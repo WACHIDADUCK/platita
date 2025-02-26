@@ -14,6 +14,7 @@ models:
     descripcion: string
     contacto: string
     email: string
+    acreditado: boolean
     imagen: string nullable
     # gestor_id: foreign:User
     relationships:
