@@ -30,17 +30,19 @@ class EventoFactory extends Factory
         // Obtener la fecha de hoy
         $hoy = Carbon::now();
 
-        // Calcular el último día del mes actual
-        $ultimoDiaDelMes = Carbon::now()->endOfMonth();
+        // Calcular la fecha dentro de un mes
+        $fechaUnMesDespues = Carbon::now()->addMonth();
 
-        // Generar una fecha de inicio aleatoria entre hoy y el último día del mes
-        $fecha_inicio = fake()->dateTimeBetween($hoy, $ultimoDiaDelMes);
+        // Generar una fecha de inicio aleatoria entre hoy y un mes después
+        $fecha_inicio = Carbon::instance(fake()->dateTimeBetween($hoy, $fechaUnMesDespues));
 
         // Generar una fecha de fin que esté entre 1 y 2 días después de la fecha de inicio
-        $fecha_fin = fake()->dateTimeBetween(
-            Carbon::instance($fecha_inicio)->addDay(),
-            Carbon::instance($fecha_inicio)->addDays(2)
-        );
+        $fecha_fin = Carbon::instance($fecha_inicio)->addDays(rand(1, 2));
+
+        // Formatear las fechas si es necesario
+        $fecha_inicio_formatted = $fecha_inicio->toDateTimeString();
+        $fecha_fin_formatted = $fecha_fin->toDateTimeString();
+
 
         // Formatear las fechas si es necesario
         $fecha_inicio_formatted = Carbon::instance($fecha_inicio)->toDateTimeString();
