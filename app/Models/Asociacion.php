@@ -22,6 +22,7 @@ class Asociacion extends Model
         'descripcion',
         'contacto',
         'email',
+        'acreditado',
         'imagen',
         'gestor_id',
     ];
@@ -33,6 +34,7 @@ class Asociacion extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'acreditado' => 'boolean',
         'gestor_id' => 'integer',
     ];
 

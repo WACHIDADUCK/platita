@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->string('contacto');
             $table->string('email');
+            $table->boolean('acreditado');
             $table->string('imagen')->nullable();
             $table->foreignId('gestor_id');
             $table->timestamps();

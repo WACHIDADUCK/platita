@@ -22,10 +22,12 @@ class AsociacionFactory extends Factory
     public function definition(): array
     {
         return [
+
             'nombre' => fake()->name(),
             'descripcion' => fake()->text(),
             'contacto' => fake()->phoneNumber(),
             'email' => fake()->safeEmail(),
+            'acreditado' => 0,
             'imagen' => "https://picsum.photos/300/300",
             'gestor_id' => User::factory(),
         ];

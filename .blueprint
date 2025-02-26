@@ -2,12 +2,12 @@ created:
     - database/factories/AsociacionFactory.php
     - database/factories/EventoFactory.php
     - database/factories/ComentarioFactory.php
-    - database/migrations/2025_02_20_105730_create_asociacions_table.php
-    - database/migrations/2025_02_20_105731_create_eventos_table.php
-    - database/migrations/2025_02_20_105732_create_comentarios_table.php
-    - database/migrations/2025_02_20_105733_create_asociacion_user_table.php
-    - database/migrations/2025_02_20_105734_create_asociacion_evento_table.php
-    - database/migrations/2025_02_20_105735_create_evento_user_table.php
+    - database/migrations/2025_02_26_155018_create_asociacions_table.php
+    - database/migrations/2025_02_26_155019_create_eventos_table.php
+    - database/migrations/2025_02_26_155020_create_comentarios_table.php
+    - database/migrations/2025_02_26_155021_create_asociacion_user_table.php
+    - database/migrations/2025_02_26_155022_create_asociacion_evento_table.php
+    - database/migrations/2025_02_26_155023_create_evento_user_table.php
     - app/Models/Asociacion.php
     - app/Models/Evento.php
     - app/Models/Comentario.php
@@ -16,6 +16,6 @@ created:
     - database/seeders/ComentarioSeeder.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable', admin: boolean }
-    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, imagen: 'string nullable', relationships: { belongsTo: 'User:gestor', belongsToMany: 'User, Evento', morphMany: Comentario } }
-    Evento: { nombre: string, descripcion: string, lugar: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: 'integer nullable', contador_aforo: 'integer nullable', aforo_socios: 'integer nullable', contador_aforo_socios: 'integer nullable', aforo_no_socios: 'integer nullable', contador_aforo_no_socios: 'integer nullable', afotor_voluntarios: 'integer nullable', contador_aforo_voluntarios: 'integer nullable', imagen: 'string nullable', relationships: { belongsToMany: 'User, Asociacion', morphMany: Comentario } }
+    Asociacion: { nombre: string, descripcion: string, contacto: string, email: string, acreditado: boolean, imagen: 'string nullable', relationships: { belongsTo: 'User:gestor', belongsToMany: 'User, Evento', morphMany: Comentario } }
+    Evento: { nombre: string, descripcion: string, lugar: string, tipo: 'enum:evento,actividad', fecha_inicio: datetime, fecha_fin: datetime, accesibilidad: 'enum:socios,publico,privado,mixto', estado: 'enum:abierto,cerrado', aforo: 'integer nullable', contador_aforo: 'integer nullable', aforo_socios: 'integer nullable', contador_aforo_socios: 'integer nullable', aforo_no_socios: 'integer nullable', contador_aforo_no_socios: 'integer nullable', aforo_voluntarios: 'integer nullable', contador_aforo_voluntarios: 'integer nullable', imagen: 'string nullable', relationships: { belongsToMany: 'User, Asociacion', morphMany: Comentario } }
     Comentario: { user_id: 'foreign:User', comentario: string, fecha: datetime, valoracion: 'integer nullable', relationships: { belongsTo: User, morphTo: comentarioable } }
