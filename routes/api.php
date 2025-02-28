@@ -13,11 +13,18 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Rutas públicas (solo GET)
+Orion::resource('usuario', UserController::class)->only(['index', 'show']);
+Orion::resource('asociacion', AsociacionController::class)->only(['index', 'show']);
+Orion::resource('evento', EventoController::class)->only(['index', 'show']);
+Orion::resource('comentario', ComentarioController::class)->only(['index', 'show']);
+
+// Rutas protegidas (todas las operaciones excepto GET)
 Route::middleware(['auth:sanctum'])->group(function () {
-    Orion::resource('usuario', UserController::class)->only(['index', 'show']);
-    Orion::resource('asociacion', AsociacionController::class)->only(['index', 'show']);
-    Orion::resource('evento', EventoController::class)->only(['index', 'show']);
-    Orion::resource('comentario', ComentarioController::class)->only(['index', 'show']);
+    Orion::resource('usuario', UserController::class)->except(['index', 'show']);
+    Orion::resource('asociacion', AsociacionController::class)->except(['index', 'show']);
+    Orion::resource('evento', EventoController::class)->except(['index', 'show']);
+    Orion::resource('comentario', ComentarioController::class)->except(['index', 'show']);
 });
 
 // Route::post('/login', [AuthController::class, 'login']);
