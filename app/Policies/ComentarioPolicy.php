@@ -13,7 +13,7 @@ class ComentarioPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ComentarioPolicy
      */
     public function view(User $user, Comentario $comentario): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ComentarioPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
