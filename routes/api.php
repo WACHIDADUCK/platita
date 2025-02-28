@@ -13,12 +13,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Orion::resource('usuario', UserController::class);
-Orion::resource('evento', EventoController::class);
-Orion::resource('comentario', ComentarioController::class);
-
 Route::middleware(['auth:sanctum'])->group(function () {
-    Orion::resource('asociacion', AsociacionController::class);
+    Orion::resource('usuario', UserController::class)->only(['index', 'show']);
+    Orion::resource('asociacion', AsociacionController::class)->only(['index', 'show']);
+    Orion::resource('evento', EventoController::class)->only(['index', 'show']);
+    Orion::resource('comentario', ComentarioController::class)->only(['index', 'show']);
 });
 
 // Route::post('/login', [AuthController::class, 'login']);
