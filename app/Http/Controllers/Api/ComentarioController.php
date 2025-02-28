@@ -11,7 +11,6 @@ use Orion\Http\Controllers\Controller as RelationController;
 
 class ComentarioController extends RelationController
 {
-    use DisableAuthorization;
+    //use DisableAuthorization;
     protected $model = Comentario::class;
-
 }
