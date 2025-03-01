@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Asociacion;
 use Illuminate\Http\JsonResponse;
-
+use App\Http\Resources\AsociacionResource;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller as RelationController;
 
@@ -25,7 +25,7 @@ class AsociacionController extends RelationController
 
         return response()->json([
             'message' => 'Asociaciones con eventos y número de usuarios',
-            'data' => $asociaciones
+            'data' => AsociacionResource::collection($asociaciones),
         ], 200);
     }
 }

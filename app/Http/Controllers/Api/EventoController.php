@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Asociacion;
 use Illuminate\Http\JsonResponse;
-
+use App\Http\Resources\EventoResource;
 use App\Models\Evento;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller as RelationController;
@@ -26,7 +26,7 @@ class EventoController extends RelationController
 
         return response()->json([
             'message' => 'Eventos con asociaciones, usuaarios y comentarios',
-            'data' => $eventos
+            'data' => EventoResource::collection($eventos),
         ], 200);
     }
 }
