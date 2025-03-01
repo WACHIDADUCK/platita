@@ -14,7 +14,7 @@ use Orion\Http\Controllers\Controller as RelationController;
 
 class EventoController extends RelationController
 {
-    use DisableAuthorization;
+    //use DisableAuthorization;
     protected $model = Evento::class;
 
 
@@ -29,6 +29,4 @@ class EventoController extends RelationController
             'data' => $eventos
         ], 200);
     }
-
-
 }

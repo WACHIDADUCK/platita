@@ -7,14 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Asociacion;
 use Illuminate\Http\JsonResponse;
 
-
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller as RelationController;
 
 
 class AsociacionController extends RelationController
 {
-    use DisableAuthorization;
+    //use DisableAuthorization;
     protected $model = Asociacion::class;
 
 
@@ -29,6 +28,4 @@ class AsociacionController extends RelationController
             'data' => $asociaciones
         ], 200);
     }
-
-
 }
