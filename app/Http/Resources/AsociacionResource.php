@@ -23,6 +23,9 @@ class AsociacionResource extends JsonResource
             'acreditado' => $this->acreditado,
             'imagen' => $this->imagen,
             'gestor_id' => $this->gestor_id,
+            'eventos' => $this->eventos,
+            'users' => $this->users,
+            'comentarios' => $this->comentarios,
         ];
     }
 }

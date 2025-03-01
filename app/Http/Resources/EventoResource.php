@@ -33,6 +33,9 @@ class EventoResource extends JsonResource
             'aforo_voluntarios' => $this->aforo_voluntarios,
             'contador_aforo_voluntarios' => $this->contador_aforo_voluntarios,
             'imagen' => $this->imagen,
+            'asociacions' => $this->asociacions,
+            'users' => $this->users,
+            'comentarios' => $this->comentarios,
         ];
     }
 }
